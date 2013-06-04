@@ -13,7 +13,8 @@
         auth-url      (dropbox/authorization-url consumer
                                                  request-token)]
     (do (session-put! :request-token request-token)
-        (ring/redirect auth-url))))
+        (ring/redirect (str auth-url
+                            "&oauth_callback=http://jopbox-demo.herokuapp.com/auth")))))
 
 (defn auth []
   (let [request-token (session-get :request-token)
