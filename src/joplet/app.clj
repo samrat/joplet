@@ -14,7 +14,8 @@
                                                  request-token)]
     (do (session-put! :request-token request-token)
         (ring/redirect (str auth-url
-                            "&oauth_callback=http://jopbox-demo.herokuapp.com/auth")))))
+                            "&oauth_callback="
+                            (System/getenv "CALLBACK_URL"))))))
 
 (defn auth []
   (let [request-token (session-get :request-token)
@@ -33,7 +34,8 @@
                "Hey there, " display-name]
               [:div
                [:a {:href "/put-demo"} "Put a file"]]]))
-    (ring/redirect "/login")))
+    (html5 [:div [:a {:href "/login"}
+                  "Connect to Dropbox."]])))
 
 (defn put-file []
   (if-let [resp (session-get :resp)]
@@ -43,5 +45,6 @@
                              :sandbox
                              "joplet_test.txt"
                              "/tmp/joplet_test.txt")
-        (ring/redirect "/")))
-  (ring/redirect "/login"))
+        (ring/redirect "/"))
+    (html5 [:div [:a {:href "/login"}
+                  "Connect to Dropbox."]])))

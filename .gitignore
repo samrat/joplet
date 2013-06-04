@@ -10,3 +10,4 @@ pom.xml
 .lein-plugins
 .lein-env
 /src/joplet/dropbox_keys.clj
+/.env
