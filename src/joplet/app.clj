@@ -3,11 +3,10 @@
             [jopbox.client :as dropbox])
   (:use sandbar.stateful-session
         hiccup.core
-        hiccup.page)
-  (:load "dropbox_keys"))
+        hiccup.page))
 
-(def consumer (dropbox/make-consumer dropbox-key
-                                     dropbox-secret))
+(def consumer (dropbox/make-consumer (System/getenv "DROPBOX_KEY")
+                                     (System/getenv "DROPBOX_SECRET")))
 
 (defn login []
   (let [request-token (dropbox/fetch-request-token consumer)
