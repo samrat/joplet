@@ -3,7 +3,9 @@
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.5"]
-                 [sandbar "0.4.0-SNAPSNOT"]]
+                 [sandbar/sandbar "0.4.0-SNAPSHOT"]
+                 [hiccup "1.0.3"]
+                 [jopbox "0.2.0"]]
   :plugins [[lein-ring "0.8.5"]]
   :ring {:handler joplet.handler/app}
   :profiles
